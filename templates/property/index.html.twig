@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MaSuperAgence - Liste des biens immobiliers{% endblock %}
+
+{% block monTitre %}Liste des biens immobiliers{% endblock %}
+
+{% block body %}
+    <div>
+        {% for property in properties %}
+            {{property.title}}
+        {% endfor %}
+    </div>
+{% endblock %}

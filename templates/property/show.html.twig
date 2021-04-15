@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MaSuperAgence - {{property.title}}{% endblock %}
+
+{% block body %}
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-8">
+            
+            </div>
+            <div class="col">
+                <h1>{{property.title}}</h1>
+                <h2>{{property.rooms}} pièces - {{property.surface}} m²</h2>
+                <div class="text-primary" style="font-weight: bold; font-size:4rem;">{{property.getFormattedPrice}} €</div>
+                <a href="" class="btn btn-info">Contacter l'agence</a>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-4">
+        <hr>
+        <p>
+            {{property.description | nl2br }} 
+        </p>
+        <hr>
+
+        <div class="row">
+            <div class="col-md-8">
+                <h2>Caractéristiques</h2>
+                <table class="table table-striped">
+                    <tr>
+                        <td>Surface habitable</td>
+                        <td>{{property.surface}} m²</td>
+                    </tr>
+                    <tr>
+                        <td>Pièces</td>
+                        <td>{{property.rooms}}</td>
+                    </tr>
+                    <tr>
+                        <td>Chambres</td>
+                        <td>{{property.bedrooms}}</td>
+                    </tr>
+                    <tr>
+                        <td>Etages</td>
+                        <td>{{property.florr}}</td>
+                    </tr>
+                    <tr>
+                        <td>Chauffage</td>
+                        <td>{{property.heatType}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col">
+                <h2>Spécificités</h2>
+            </div>
+        </div>
+
+    </div>
+    
+{% endblock %}

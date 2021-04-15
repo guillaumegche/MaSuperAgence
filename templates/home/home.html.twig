@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MaSuperAgence - Page d'accueil{% endblock %}
+
+{% block body %}
+    <div class="jumbotron text-center">
+        <h1 classe="">MaSuperAgence - Page d'accueil</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit veritatis quod doloribus recusandae? Ipsa id voluptatibus tempora sed quam esse officia recusandae provident. Facilis rerum quaerat quos sequi ducimus animi?</p>
+    </div>
+    <div class="container">
+        <h2 class="text-dark">Les derniers biens immobiliers</h2>
+        <div class="row flex">
+            {% for property in properties %}
+            <div class="col-3 col-md-6 col-lg-4 col-xl-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">
+                           <a href="{{ path('property.show', {'id': property.id, 'slug': property.slug}) }}">{{property.title}}</a> 
+                        </h3>
+                        <p class="card-text">{{property.city}} ({{property.postalCode}})</p>
+                        <div class="text-primary" style="font-weight: bold; font-size:2rem;">{{property.getFormattedPrice}} €</div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+{% endblock %}
