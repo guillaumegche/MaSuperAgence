@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MaSuperAgence - Gestion des biens{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <!-- Affichage des messages flash success et error -->
+        <div class="row justify-content-center text-center my-3">
+            <div class="col-md-12">
+                {% for message in app.flashes('success')%}
+                <div class="alert alert-success" id="message">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endfor %}
+
+                {% for message in app.flashes('error')%}
+                <div class="alert alert-danger" id="message">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="d-flex justify-content-between align-items-center">
+            <h1>Gérer mes biens</h1>
+            <a href="{{ path('admin.property.create') }}" class="btn btn-primary">Ajouter</a>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for property in properties %}
+                <tr>
+                    <td>{{ property.title }}</td>
+                    <td>
+                        <a href="{{ path('admin.property.edit', {'id': property.id}) }}" class="btn btn-primary">Editer</a>
+                        <form method="post" action="{{ path('admin.property.delete', {'id': property.id}) }}" style="display: inline-block" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer ce bien ?')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ property.id) }}">
+                            <input type="submit" class="btn btn-danger" value="Supprimer">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
