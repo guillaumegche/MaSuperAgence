@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MaSuperAgence - Création de l'option{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="text-center">Créer une nouvelle option</h1>
+        <div class="col-md-6 mx-auto">
+            {{ include('admin/option/_form.html.twig') }}
+            <a href="{{ path('option_index') }}">Retour à la liste</a>
+        </div>
+    </div>
+
+    
+
+    
+{% endblock %}
